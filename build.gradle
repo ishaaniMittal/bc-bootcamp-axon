@@ -11,10 +11,7 @@ dependencies {
     compile 'org.axonframework:axon-core:2.4'
     compile 'org.axonframework:axon-mongo:2.4'
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.togglz:togglz-servlet:2.2.0.Final'
-    compile 'org.togglz:togglz-core:2.2.0.Final'
-    compile 'org.togglz:togglz-console:2.2.0.Final'
-    compile 'org.togglz:togglz-spring-web:2.2.0.Final'
+
     compile 'org.springframework.data:spring-data-mongodb:1.8.1.RELEASE'
     compile 'org.springframework.data:spring-data-commons:1.11.1.RELEASE'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
@@ -33,6 +30,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
     }
 }

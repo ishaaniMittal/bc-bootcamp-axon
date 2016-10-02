@@ -2,7 +2,6 @@ package fun.web;
 
 
 import fun.commands.CreateUserCommand;
-import fun.configuration.MyFeatures;
 import fun.domains.model.User;
 import fun.query.repository.UserRepository;
 import fun.query.views.UserView;
@@ -39,27 +38,25 @@ public class UserController {
 
         System.out.println("request.getDateOfBirth() = " + request.getDateOfBirth());
 
-        if (MyFeatures.CAN_CREATE_USER.isActive()) {
-            UUID userId = UUID.randomUUID();
-            CreateUserCommand command = new CreateUserCommand(userId.toString(),
-                    request.getUserName(),
-                    request.getDateOfBirth());
-            commandGateway.send(command);
-            Map returnMap = new HashMap();
-            returnMap.put("userId", userId);
-            return ok().body(returnMap);
-        } else {
-            return badRequest().build();
-        }
+
+        UUID userId = UUID.randomUUID();
+        CreateUserCommand command = new CreateUserCommand(userId.toString(),
+                request.getUserName(),
+                request.getDateOfBirth());
+        commandGateway.send(command);
+        Map returnMap = new HashMap();
+        returnMap.put("userId", userId);
+        return ok().body(returnMap);
+
     }
 
     @RequestMapping(value = "/api/user/{userId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity getUser(@PathVariable String userId){
+    public ResponseEntity getUser(@PathVariable String userId) {
         UserView user = users.findOne(userId);
-        if(user == null){
+        if (user == null) {
             return notFound().build();
-        }else{
+        } else {
             return ok().body(user);
         }
     }

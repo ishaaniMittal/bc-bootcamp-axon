@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.togglz.core.context.StaticFeatureManagerProvider;
-import org.togglz.core.manager.FeatureManager;
 
 @SpringBootApplication
 @ComponentScan("fun")
@@ -20,7 +18,5 @@ public class Application {
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-        FeatureManager featureManager = context.getBean(FeatureManager.class);
-        StaticFeatureManagerProvider.setFeatureManager(featureManager);
     }
 }
