@@ -2,7 +2,6 @@ package fun.configuration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.Mongo;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.annotation.AnnotationCommandHandlerBeanPostProcessor;
@@ -15,9 +14,7 @@ import org.axonframework.eventhandling.annotation.AnnotationEventListenerBeanPos
 import org.axonframework.eventstore.EventStore;
 import org.axonframework.eventstore.fs.FileSystemEventStore;
 import org.axonframework.eventstore.fs.SimpleEventFileResolver;
-import org.axonframework.eventstore.mongo.DefaultMongoTemplate;
-import org.axonframework.eventstore.mongo.MongoEventStore;
-import org.axonframework.serializer.*;
+import org.axonframework.serializer.Serializer;
 import org.axonframework.serializer.json.JacksonSerializer;
 import org.springframework.context.annotation.Bean;
 
@@ -56,15 +53,17 @@ public class Default {
     }
 
     @Bean
-    public EventStore eventStore(Mongo mongo, Serializer serializer) {
-        return new MongoEventStore(serializer , new DefaultMongoTemplate(mongo));
+    public EventStore eventStore(Serializer serializer) {
+        return new FileSystemEventStore(serializer, new SimpleEventFileResolver(new File("./eventstore")));
     }
 
-    @Bean Serializer serializer(ObjectMapper objectMapper){
+    @Bean
+    Serializer serializer(ObjectMapper objectMapper) {
         return new JacksonSerializer(objectMapper);
     }
 
-    @Bean ObjectMapper objectMapper(){
+    @Bean
+    ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         return objectMapper;

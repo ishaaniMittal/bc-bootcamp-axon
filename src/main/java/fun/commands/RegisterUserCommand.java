@@ -4,16 +4,16 @@ import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 
 import java.util.Date;
 
-public class CreateUserCommand {
+public class RegisterUserCommand {
     @TargetAggregateIdentifier
     private String id;
     private String userName;
     private Date dateOfBirth;
 
-    public CreateUserCommand() {
+    public RegisterUserCommand() {
     }
 
-    public CreateUserCommand(String id, String userName, Date dateOfBirth) {
+    public RegisterUserCommand(String id, String userName, Date dateOfBirth) {
         this.id = id;
         this.userName = userName;
         this.dateOfBirth = dateOfBirth;
