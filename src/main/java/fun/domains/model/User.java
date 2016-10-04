@@ -24,3 +24,5 @@ public class User extends AbstractAnnotatedAggregateRoot {
         this.userId = event.getUserId();
     }
 }
+
+//all aggregate states should be changed in EventSourcingHandler

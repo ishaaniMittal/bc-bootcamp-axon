@@ -34,6 +34,7 @@ public class Default {
     @Bean
     public AnnotationCommandHandlerBeanPostProcessor annotationCommandHandlerBeanPostProcessor() {
         AnnotationCommandHandlerBeanPostProcessor processor = new AnnotationCommandHandlerBeanPostProcessor();
+        //whenever you see commandHandler, they see what parameter the handler takes, and then send all this
         processor.setCommandBus(commandBus());
         return processor;
     }

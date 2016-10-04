@@ -12,5 +12,4 @@ public class UserCreatedEventListener {
         System.out.println("Got Event : " + userCreatedEvent);
     }
 
-
 }
